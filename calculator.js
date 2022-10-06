@@ -1,12 +1,36 @@
 const display = document.querySelector('#display');
 
-const numberButtons = Array.from(document.querySelectorAll('.numbers'));
+const buttons = Array.from(document.querySelectorAll('.numbers-operators > button'));
 
-console.log(numberButtons);
+const addEvent = buttons.map(e => e.addEventListener('click', displayBttns));
 
-const addEvent = numberButtons.map(e => e.addEventListener('click', displayNums));
+function displayBttns(){
+    display.textContent += this.textContent;
+};
 
-function displayNums(){
-    display.textContent = this.textContent;
-}
+function plus(a, b){
+    return a+b;
+};
 
+function minus(a, b){
+    return a-b;
+};
+
+function multiply(a, b){
+    return a*b;
+};
+
+function divide(a, b){
+    return a/b;
+};
+
+document.getElementById('divider').addEventListener('click', () =>
+    display.textContent = divide(display.textContent, 2)) 
+
+document.getElementById('multiply').addEventListener('click', () => multiply()) 
+
+document.getElementById('minus').addEventListener('click', () =>  minus()) 
+
+document.getElementById ('plus').addEventListener('click', () => plus()) 
+
+document.getElementById('equals').addEventListener('click', () => plus() )
