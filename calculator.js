@@ -1,12 +1,18 @@
 const display = document.querySelector('#display');
 
-const buttons = Array.from(document.querySelectorAll('.numbers-operators > button'));
+const displayBttns = Array.from(document.querySelectorAll('.numbers-operators > button')).map(e => e.addEventListener('click', displayEvent));
 
-const addEvent = buttons.map(e => e.addEventListener('click', displayBttns));
+const numbers = Array.from(document.querySelectorAll('.numbers')).map(e => e.addEventListener('click', saveVar));
+let var1 = ''
 
-function displayBttns(){
+function displayEvent(){
     display.textContent += this.textContent;
 };
+
+function saveVar(){
+    var1 += this.textContent;
+    console.log(var1);
+}
 
 function plus(a, b){
     return a+b;
