@@ -2,37 +2,39 @@ const display = document.querySelector('#display');
 
 const displayBttns = Array.from(document.querySelectorAll('.numbers-operators > button:not(#equals)')).map(e => e.addEventListener('click', displayEvent));
 
-const numbers = Array.from(document.querySelectorAll('.numbers')).map(e => e.addEventListener('click', saveVar));
 
-const numberArr = Array.from(document.querySelectorAll('.numbers')).map(e => e.id);
-console.log(numberArr);
+let var1 
+let var2 
 
-let var1 = [];
-let var2 = '';
+let arr = [];
 
 function displayEvent(){
     display.textContent += this.textContent;
+    arr.push(this.textContent);
+    console.log(arr);
 };
 
-function saveVar(){
-    var1.push(this.textContent);
-    console.log(var1)
-}
+
+
 
 let operatorSelect
 
 function setOperator(){
     console.log(this.id);
     operatorSelect = this.id;
-    display.textContent = '';
 }
 
 function whichOperator(){
     console.log(operatorSelect);
+    // let indexofOperator = arr.indexOf(//);
+    var1 = arr.slice(0,indexofOperator).join('');
+    var2 = arr.slice(indexofOperator+1).join('');
     if(operatorSelect === 'plus') display.textContent = plus(var1, var2);
     else if (operatorSelect === 'minus') display.textContent =  minus(var1, var2);
     else if (operatorSelect === 'multiply') display.textContent =  multiply(var1, var2);
     else display.textContent = divide(var1, var2)
+    console.log(indexofOperator);
+    console.log(var1 +'plus'+ var2)
 }
 
 function plus(a, b){
@@ -59,4 +61,5 @@ function clear(){
     display.textContent = '';
     var1 = '';
     operatorSelect = '';
+    arr = [];
 }
