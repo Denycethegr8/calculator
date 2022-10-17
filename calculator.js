@@ -6,15 +6,10 @@ const displayBttns = Array.from(document.querySelectorAll('.numbers-operators > 
 let var1 
 let var2 
 
-let arr = [];
-
 function displayEvent(){
     display.textContent += this.textContent;
-    arr.push(this.textContent);
-    console.log(arr);
+    console.log(display.textContent);
 };
-
-
 
 
 let operatorSelect
@@ -26,15 +21,17 @@ function setOperator(){
 
 function whichOperator(){
     console.log(operatorSelect);
-    // let indexofOperator = arr.indexOf(//);
-    var1 = arr.slice(0,indexofOperator).join('');
-    var2 = arr.slice(indexofOperator+1).join('');
+    const operationReg = /[-+%x]/;
+    let indexofOperator = display.textContent.search(operationReg);
+    var1 = Number(display.textContent.split('').slice(0,indexofOperator).join(''));
+    var2 = Number(display.textContent.split('').slice(indexofOperator+1).join(''));
     if(operatorSelect === 'plus') display.textContent = plus(var1, var2);
     else if (operatorSelect === 'minus') display.textContent =  minus(var1, var2);
     else if (operatorSelect === 'multiply') display.textContent =  multiply(var1, var2);
     else display.textContent = divide(var1, var2)
     console.log(indexofOperator);
-    console.log(var1 +'plus'+ var2)
+    console.log(var2 +'and'+ var2)
+    console.log(typeof(var1));
 }
 
 function plus(a, b){
@@ -60,6 +57,6 @@ document.querySelector('#clear').addEventListener('click', clear)
 function clear(){
     display.textContent = '';
     var1 = '';
+    var2 = '';
     operatorSelect = '';
-    arr = [];
 }
